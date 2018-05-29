@@ -1,0 +1,29 @@
+
+
+from pwn import *
+from time import sleep
+import sys
+context.terminal = ["deepin-terminal", "-x", "sh", "-c"]
+
+elf = ELF("")
+if sys.argv[1] == "l":
+    context.log_level = "debug"
+    # env = {'LD_PRELOAD': ''}
+    # io = process("", env = env)
+    io = process("")
+    libc = elf.libc
+
+
+else:
+    io = remote("", )
+    libc = ELF("")
+
+
+def DEBUG(cmd = ""):
+    raw_input("DEBUG: ")
+    gdb.attach(io, cmd)
+
+if __name__ == "__main__":
+    
+    io.interactive()
+    io.close()
