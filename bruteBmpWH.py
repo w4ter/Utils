@@ -13,7 +13,7 @@ def saveBmp(name, width, height):
     with open(name + ".bmp", "w") as f:
         f.write(s[: 0x12] + struct.pack('<i', width) + struct.pack('<i', height) + s[0x1a: ])
 
-for i in xrange(1, All / 2):
+for i in xrange(1, All):
     if All % i == 0:
         #  print i, All / i
         saveBmp(str(i), i, All / i)
