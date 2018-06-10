@@ -13,11 +13,11 @@ if sys.argv[1] == "l":
     io = process("")
     libc = elf.libc
 
-
 else:
     io = remote("", )
     libc = ELF("")
 
+success = lambda name, value: log.success("{} -> {:#x}".format(name, value))
 
 def DEBUG(cmd = ""):
     raw_input("DEBUG: ")
