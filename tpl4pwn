@@ -2,6 +2,7 @@
 
 from pwn import *
 from time import sleep
+import os
 import sys
 context.terminal = ["deepin-terminal", "-x", "sh", "-c"]
 
@@ -19,9 +20,15 @@ else:
 
 success = lambda name, value: log.success("{} -> {:#x}".format(name, value))
 
-def DEBUG(cmd = ""):
+def DEBUG(bps = [], pie = False):
+    if pie:
+        base = int(os.popen("pmap {}| awk '{{print $1}}'".format(pidof(io[0]))).readlines()[1], 16)
+        bp = ''.join(['b *{:#x}\n'.format(b + base) for b in bps])
+    else:
+        bp = ''.join(['b *{:#x}\n'.format(b) for b in bps])
+
     raw_input("DEBUG: ")
-    gdb.attach(io, cmd)
+    gdb.attach(io, bp)
 
 if __name__ == "__main__":
     
