@@ -22,13 +22,13 @@ success = lambda name, value: log.success("{} -> {:#x}".format(name, value))
 
 def DEBUG(bps = [], pie = False):
     if pie:
-        base = int(os.popen("pmap {}| awk '{{print $1}}'".format(pidof(io[0]))).readlines()[1], 16)
+        base = int(os.popen("pmap {}| awk '{{print $1}}'".format(pidof(io)[0])).readlines()[1], 16)
         cmd = ''.join(['b *{:#x}\n'.format(b + base) for b in bps])
     else:
         cmd = ''.join(['b *{:#x}\n'.format(b) for b in bps])
 
     if bps != []:
-        cmd += "c\"
+        cmd += "c"
 
     raw_input("DEBUG: ")
     gdb.attach(io, cmd)
