@@ -6,16 +6,19 @@ import os
 import sys
 context.terminal = ["deepin-terminal", "-x", "sh", "-c"]
 
-elf = ELF("")
+binary = 
+elf = ELF(binary)
 if sys.argv[1] == "l":
     context.log_level = "debug"
     # env = {'LD_PRELOAD': ''}
     # io = process("", env = env)
-    io = process("")
+    io = process(binary)
     libc = elf.libc
 
 else:
-    io = remote("", )
+    remoteAddr = ""
+    remotePort = 
+    io = remote(remoteAddr, remotePort)
     libc = ELF("")
 
 success = lambda name, value: log.success("{} -> {:#x}".format(name, value))
