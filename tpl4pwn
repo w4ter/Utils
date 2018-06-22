@@ -8,7 +8,7 @@ import sys
 elfPath = ""
 libcPath = ""
 remoteAddr = ""
-remotePort = ""
+remotePort = 
 
 context.binary = elfPath
 context.terminal = ["deepin-terminal", "-x", "sh", "-c"]
