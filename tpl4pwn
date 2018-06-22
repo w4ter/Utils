@@ -4,22 +4,28 @@ from pwn import *
 from time import sleep
 import os
 import sys
+
+elfPath = ""
+libcPath = ""
+remoteAddr = ""
+remotePort = ""
+
+context.binary = elfPath
 context.terminal = ["deepin-terminal", "-x", "sh", "-c"]
 
-binary = 
-elf = ELF(binary)
+elf = context.binary
 if sys.argv[1] == "l":
     context.log_level = "debug"
     # env = {'LD_PRELOAD': ''}
     # io = process("", env = env)
-    io = process(binary)
+    io = process(elfPath)
     libc = elf.libc
 
 else:
-    remoteAddr = ""
-    remotePort = 
+    context.log_level = "error"
     io = remote(remoteAddr, remotePort)
-    libc = ELF("")
+    if libcPath:
+        libc = ELF(libcPath)
 
 success = lambda name, value: log.success("{} -> {:#x}".format(name, value))
 
