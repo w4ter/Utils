@@ -22,7 +22,7 @@ if sys.argv[1] == "l":
     libc = elf.libc
 
 else:
-    context.log_level = "error"
+    context.log_level = "info"
     io = remote(remoteAddr, remotePort)
     if libcPath:
         libc = ELF(libcPath)
