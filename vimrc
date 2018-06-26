@@ -2,9 +2,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'scrooloose/nerdcommenter'
 " Plug 'ayu-theme/ayu-vim'
 Plug 'jiangmiao/auto-pairs'
+Plug 'vim-scripts/DrawIt'
 Plug 'Valloric/YouCompleteMe'
 Plug 'bling/vim-airline'
 Plug 'dracula/vim', { 'as': 'dracula' }
+" Plug 'jacoborus/tender.vim'
 call plug#end()
 
 set nocompatible              " be iMproved, required
@@ -56,19 +58,16 @@ function HeaderPython()
     call append(1, "# -*- coding: utf-8 -*-")
     call append(2, "__Auther__ = 'M4x'")
     normal G
-    normal o
-    normal o
 endf
 
 autocmd bufNewFile exp.py 0r ~/.vim/tpl4pwn
+autocmd bufNewFile pin.py 0r ~/.vim/tpl4pin
 autocmd bufnewfile *.py call HeaderPython()
 
 function HeaderShell()
     call setline(1, "#!/usr/bin/env bash")
     call append(1, "set -euxo pipefail")
     normal G
-    normal o
-    normal o
 endf
 
 autocmd bufnewfile *.sh call HeaderShell()
